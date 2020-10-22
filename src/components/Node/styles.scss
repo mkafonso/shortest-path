@@ -1,0 +1,14 @@
+div.node {
+  width: 25px;
+  height: 25px;
+  outline: 1px solid #414154;
+  display: inline-block;
+}
+
+.start-node {
+  background-color: #03af53;
+}
+
+.end-node {
+  background-color: #fa617b;
+}

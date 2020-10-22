@@ -1,28 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 // import styles
 import './styles.scss';
 
-export default class Node extends Component {
-  constructor(props) {
-    super(props);
+export default function Node(props) {
+  const {
+    col,
+    endNode,
+    startNode,
+    isWall,
+    onMouseDown,
+    onMouseEnter,
+    onMouseUp,
+    row,
+  } = props;
 
-    this.state = {};
-  }
+  const setActualNodeState = endNode
+    ? 'end-node'
+    : startNode
+    ? 'start-node'
+    : isWall
+    ? 'node-wall'
+    : '';
 
-  render() {
-    const { startNode, endNode } = this.props;
-    const setActualNodeState = startNode
-      ? 'start-node'
-      : endNode
-      ? 'end-node'
-      : '';
-
-    return <div className={`node ${setActualNodeState}`}></div>;
-  }
+  return (
+    <div
+      id={`node-${row}-${col}`}
+      className={`node ${setActualNodeState}`}
+      onMouseDown={() => onMouseDown(row, col)}
+      onMouseEnter={() => onMouseEnter(row, col)}
+      onMouseUp={() => onMouseUp()}
+    ></div>
+  );
 }
-
-export const DEFAULT_NODE = {
-  row: 0,
-  col: 0,
-};
